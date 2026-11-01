@@ -149,6 +149,42 @@ section { padding-block: 3rem; }
 .fact h3 { font-size: 1.25rem; font-weight: 700; }
 .fact p { color: var(--muted); font-size: 1rem; }
 
+/* Tadpoles: life cycle strip */
+.cycle {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+  counter-reset: stage;
+}
+.stage {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+  min-width: 0;
+  counter-increment: stage;
+}
+.stage svg { width: 100%; max-width: 7rem; height: auto; }
+.stage .step {
+  font: 500 0.75rem/1 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.stage .step::before { content: counter(stage, decimal-leading-zero) " · "; }
+.stage h3 { font-size: 1.15rem; font-weight: 700; }
+.stage p { color: var(--muted); font-size: 0.95rem; }
+.tadpole-note {
+  margin-top: 2rem;
+  background: var(--pad);
+  border-radius: 1.5rem;
+  padding: 1.5rem 1.75rem;
+  max-width: 44rem;
+}
+.tadpole-note strong { font-family: var(--display); }
+
 /* Size scale */
 .scale {
   border-top: 2px solid var(--line);
@@ -187,6 +223,7 @@ footer { padding-block: 2rem 3rem; font: 500 0.8rem/1.5 var(--mono); color: var(
   .frog-btn { width: min(100%, 16rem); }
   .facts { grid-template-columns: 1fr; }
   .fact, .fact:nth-child(even) { border-radius: 2rem; }
+  .cycle { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 1rem; }
   .scale-row { grid-template-columns: 1fr; gap: 0.4rem; }
   .closing { grid-template-columns: 1fr; padding: 1.75rem; }
 }
@@ -261,6 +298,81 @@ footer { padding-block: 2rem 3rem; font: 500 0.8rem/1.5 var(--mono); color: var(
         <p>Frog-like animals were already around in the early Jurassic. They outlived T. rex by tens of millions of years and are still here.</p>
       </article>
     </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Every frog starts as a tadpole</h2>
+      <p>Frogs live two lives: one underwater with a tail and gills, one on land with legs and lungs. The switch between them is called metamorphosis.</p>
+    </div>
+    <ol class="cycle">
+      <li class="stage">
+        <svg viewBox="0 0 120 80" aria-hidden="true">
+          <circle cx="40" cy="40" r="16" fill="var(--pad)" stroke="var(--line)" stroke-width="2"/>
+          <circle cx="40" cy="40" r="5" fill="var(--ink)"/>
+          <circle cx="72" cy="34" r="16" fill="var(--pad)" stroke="var(--line)" stroke-width="2"/>
+          <circle cx="72" cy="34" r="5" fill="var(--ink)"/>
+          <circle cx="62" cy="62" r="13" fill="var(--pad)" stroke="var(--line)" stroke-width="2"/>
+          <circle cx="62" cy="62" r="4" fill="var(--ink)"/>
+        </svg>
+        <span class="step">Spawn</span>
+        <h3>Eggs in jelly</h3>
+        <p>Each egg sits in a ball of jelly that swells in the water, protecting it and keeping it warm.</p>
+      </li>
+      <li class="stage">
+        <svg viewBox="0 0 120 80" aria-hidden="true">
+          <ellipse cx="42" cy="40" rx="18" ry="14" fill="var(--frog)"/>
+          <path d="M58 40 Q80 26 104 40 Q80 50 58 40Z" fill="var(--frog)" opacity="0.7"/>
+          <circle cx="36" cy="35" r="3" fill="var(--ink)"/>
+        </svg>
+        <span class="step">Hatchling</span>
+        <h3>Tiny swimmer</h3>
+        <p>Newly hatched tadpoles breathe through gills and spend their first days clinging to plants.</p>
+      </li>
+      <li class="stage">
+        <svg viewBox="0 0 120 80" aria-hidden="true">
+          <ellipse cx="42" cy="38" rx="20" ry="15" fill="var(--frog)"/>
+          <path d="M60 38 Q82 24 106 38 Q82 48 60 38Z" fill="var(--frog)" opacity="0.7"/>
+          <path d="M48 50 L58 64 L66 62" stroke="var(--frog)" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="35" cy="33" r="3" fill="var(--ink)"/>
+        </svg>
+        <span class="step">Back legs</span>
+        <h3>Legs first</h3>
+        <p>Back legs sprout before front ones. The tadpole still swims with its tail and mostly grazes on algae.</p>
+      </li>
+      <li class="stage">
+        <svg viewBox="0 0 120 80" aria-hidden="true">
+          <ellipse cx="46" cy="44" rx="22" ry="16" fill="var(--frog)"/>
+          <path d="M66 46 Q84 40 96 46 Q84 52 66 46Z" fill="var(--frog)" opacity="0.7"/>
+          <circle cx="36" cy="28" r="8" fill="var(--frog)"/>
+          <circle cx="54" cy="28" r="8" fill="var(--frog)"/>
+          <circle cx="36" cy="27" r="3" fill="var(--ink)"/>
+          <circle cx="54" cy="27" r="3" fill="var(--ink)"/>
+          <path d="M32 58 L26 68" stroke="var(--frog)" stroke-width="5" stroke-linecap="round"/>
+          <path d="M58 58 L64 68" stroke="var(--frog)" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        <span class="step">Froglet</span>
+        <h3>Tail shrinking</h3>
+        <p>Front legs pop out, lungs take over from gills, and the body reabsorbs the tail for energy.</p>
+      </li>
+      <li class="stage">
+        <svg viewBox="0 0 120 80" aria-hidden="true">
+          <ellipse cx="60" cy="68" rx="40" ry="5" fill="var(--line)"/>
+          <ellipse cx="60" cy="50" rx="30" ry="18" fill="var(--frog)"/>
+          <ellipse cx="60" cy="56" rx="18" ry="10" fill="var(--belly)"/>
+          <circle cx="46" cy="30" r="10" fill="var(--frog)"/>
+          <circle cx="74" cy="30" r="10" fill="var(--frog)"/>
+          <circle cx="46" cy="29" r="5" fill="#ffffff"/>
+          <circle cx="74" cy="29" r="5" fill="#ffffff"/>
+          <circle cx="47" cy="30" r="2.5" fill="#17301f"/>
+          <circle cx="73" cy="30" r="2.5" fill="#17301f"/>
+        </svg>
+        <span class="step">Frog</span>
+        <h3>Off it hops</h3>
+        <p>A tiny frog climbs out of the pond, ready for life on land. It will come back to water to breed.</p>
+      </li>
+    </ol>
+    <p class="tadpole-note"><strong>Spot them yourself.</strong> In the UK, common frogs usually lay spawn in late winter or early spring, so check a local pond from February. Look, but leave the spawn where it is: moving it between ponds can spread disease.</p>
   </section>
 
   <section>
